@@ -1,7 +1,9 @@
 package com.sparta.test.controller;
 
 import com.sparta.test.entity.Item;
+import com.sparta.test.repository.ItemRepository;
 import com.sparta.test.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +14,12 @@ import java.util.Optional;
 public class ItemController {
 
     private final ItemService itemService;
+    private final ItemRepository itemRepository;
 
-
-    public ItemController(ItemService itemService) {
+    @Autowired
+    public ItemController(ItemService itemService, ItemRepository itemRepository) {
         this.itemService = itemService;
+        this.itemRepository = itemRepository;
     }
 
 
@@ -79,10 +83,10 @@ public class ItemController {
         return "redirect:/post";
     }
 
-
     @DeleteMapping("/post/{id}")
-    public String deleteItem(@PathVariable int id) {
-        return "list";
+    public String deleteItem(@PathVariable Long id) {
+        itemRepository.deleteById(id);
+        return "redirect:/post";
     }
 
 

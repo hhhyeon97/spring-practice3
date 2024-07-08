@@ -5,6 +5,8 @@
     <title>create</title>
 </head>
 <body>
+<div th:replace="~{ navbar.html::navbar }"></div>
+
 <h1>판매글 작성하기</h1>
 <form id="itemForm" action="/post" method="POST">
     <input name="title"  placeholder="게시글 제목" required>
@@ -13,6 +15,5 @@
     <input name="username" type="hidden" th:value="김테스">
     <button type="submit">등록</button>
 </form>
-<br>
 </body>
 </html>
