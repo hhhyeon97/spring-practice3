@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+</head>
+<body>
+<h1>판매글 수정하기</h1>
+<form id="itemForm" action="/edit" method="POST">
+    <input type="hidden" name="id" th:value="${item.id}">
+    <input type="text" name="title" placeholder="게시글 제목" required th:value="${item.title}">
+    <input type="number" min="100" name="price" placeholder="가격" required th:value="${item.price}">
+    <input name="content" placeholder="설명" required th:value="${item.content}">
+    <input type="text" name="username" th:value="${item.username}" readonly>
+    <button type="submit">수정</button>
+</form>
+<br>
+<a href="/post">Back to Item List</a>
+</body>
+</html>
